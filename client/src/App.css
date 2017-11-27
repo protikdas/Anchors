@@ -1,0 +1,13 @@
+.App {
+  text-align: center;
+}
+
+.app-container {
+  display: flex;
+  justify-content: center;
+}
+
+.world-map {
+  height: 100vh;
+  width: 100vw;
+}

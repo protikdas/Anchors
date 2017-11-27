@@ -1,0 +1,5 @@
+.custom-ship-marker {
+    height: 20px;
+    width: 20px;
+    animation: fadeIn 2s ease;
+}
