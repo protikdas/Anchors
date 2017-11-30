@@ -1,0 +1,113 @@
+.auth-container {
+    height: 100vh;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 2;
+    animation: fadeIn 1s ease-in;
+}
+
+.auth-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border: 20px solid rgb(2, 2, 72);
+    font-family: Play;
+    width: 500px;
+    height: 400px;
+    background-color: black;
+    border-radius: 20px;
+    opacity: 0.7;
+    z-index: 2;
+}
+
+.auth-header {
+    font-size: 2.5em;
+    color: rgb(0, 159, 222);
+    position: relative;
+}
+
+
+.auth-form-input {
+    background: transparent;
+    width: 400px;
+    height: 2em;
+    color: cyan;
+    padding: 0px 0px 0px 20px;
+    font-family: Play;
+    font-size: 2em;
+    margin: 10px;
+    outline: none;
+    border: 3px solid rgb(62, 62, 62);
+    border-radius: 20px;
+}
+
+.auth-form-button {
+    font-family: Play;
+    font-size: 1.5em;
+    width: 150px;
+    margin: 10px;
+    height: 2em;
+    color: skyblue;
+    border: 3px solid rgb(62, 62, 62);
+    border-radius: 15px;
+    background:black;
+    cursor: pointer;
+    outline: none;
+}
+
+.auth-form-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+}
+
+.auth-form-button:hover {
+    color: cyan;
+    text-shadow: 2px 2px rgb(2, 2, 72);
+    background:rgb(62, 62, 62);
+    
+}
+
+.auth-link {
+    font-family: PlayBold;
+    color: rgb(0, 159, 222);
+    text-decoration: none;
+}
+
+.auth-link:hover {
+    color: skyblue;
+}
+
+.change-auth-option {
+    color: rgb(0, 159, 222);
+    font-size: 1.5em;
+}
+
+.auth-error-positioner {
+    position: fixed;
+    bottom: 0px;
+    width: 542.5px;
+    height: 20vh;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    /* flex-wrap: wrap; */
+}
+
+.auth-error-container-visible {
+    width: 300px;
+    visibility: visible;
+}
+
+.auth-error-container-invisible { 
+    width: 300px;
+    visibility: hidden;
+}
+
+.error-message {
+    bottom: 0px;
+    font-family: Play;
+    font-size: 1.5em;
+    color: yellow;
+}

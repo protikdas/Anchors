@@ -1,13 +1,85 @@
+input::-webkit-input-placeholder {
+  color: grey !important;
+  }
+
 .App {
   text-align: center;
 }
 
+/* Fonts */
+@font-face {
+  font-family: Play;
+  src: url(./fonts/Play/Play-Regular.ttf);
+}
+
+@font-face {
+  font-family: PlayBold;
+  src: url(./fonts/Play/Play-Bold.ttf);
+}
+
+
+@font-face {
+  font-family: Cabin;
+  src: url(./fonts/Cabin/Cabin-Regular.ttf);
+}
+
+
+
+/* Stars and Twinkling */
+@keyframes move-twink-back {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -10000px 5000px;
+  }
+}
+
+.stars,
+.twinkling {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    display: block;
+  }
+  
+.stars {
+    background: #000 url(images/stars.png) repeat top center;
+    z-index: 0;
+  }
+  
+.twinkling {
+    background: transparent url(images/twinkling.png) repeat center;
+    z-index: 0;
+    animation: move-twink-back 200s linear infinite;
+  }
+
 .app-container {
   display: flex;
+  flex-direction: row;
+  align-items: center;
   justify-content: center;
+  z-index: 1;
 }
 
 .world-map {
   height: 100vh;
   width: 100vw;
+}
+
+
+/* GLOBE */
+#rotatingGlobe {
+  margin: 100px;
+  width: 80vh;
+  height: 80vh;
+}
+
+#globe-handler {
+  position: fixed;
+  z-index: 1;
 }
