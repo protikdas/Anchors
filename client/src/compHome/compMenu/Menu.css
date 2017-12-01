@@ -7,10 +7,11 @@
 }
 
 .menu-container {
+    font-family: Play;
     width: 20vw;
     min-width: 400px;
     height: 100vh;
-    min-height: 800px;
+    min-height: 1000px;
     background-color: rgb(15, 15, 15);
     border-left: 20px solid rgb(2, 2, 72);
     display: flex;
@@ -22,30 +23,97 @@
 
 .user-info {
     width: 100%;
-    height: 10%;
+    height: 15%;
     min-width: 400px;
-    background: red;
+    display: flex;
+    position: relative;
+    left: 20px;
 }
-
-.ship-list {
-    height: 70%;
-    background-color: green;
-}
-
-.control-panel {
-    height: 10%;
-    background-color: blue;
-}
-
-/* p {
-    font-family: Play;
-} */
 
 .user-text {
     color: white;
+    font-size: 2em;
+    position: relative;
+    top: 25px;
+}
+
+.sign-out-button {
+    font-family: Play;
+    font-size: 1.2em;
+    width: 120px;
+    margin: 10px;
+    height: 2em;
+    color: skyblue;
+    border: 3px solid rgb(62, 62, 62);
+    border-radius: 15px;
+    background:black;
+    cursor: pointer;
+    outline: none;
+    position: fixed;
+    top: 0%;
+    right: 0%;
+}
+
+.sign-out-button:hover {
+    color: cyan;
+    text-shadow: 2px 2px rgb(2, 2, 72);
+    background:rgb(34, 34, 34);
+}
+
+
+.ship-list-head{
+    height: 10%;
+    display: flex;
+    opacity: 0.9;
+    border-top: 15px solid rgb(2, 2, 72);
+    border-bottom: 10px solid rgb(2, 2, 72);
+}
+
+.ship-section {
+    height: 80%;
+}
+
+.ship-list-header {
+    color: cyan;
+    font-size: 2em;
+    position: relative;
+    left: 48%;
+    top: 25%;
+}
+
+#add-ship {
+    font-family: Play;
     font-size: 1.5em;
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    height: 2em;
+    color: yellowgreen;
+    border: 3px solid green;
+    border-radius: 25px;
+    background:black;
+    cursor: pointer;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 3px;
+    left: 5px;
+}
+
+#add-ship:hover{
+    background:rgb(19, 19, 19);
+}
+
+.ship-list-scroller {
+    width:100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
 }
 
 .home-view {
     width: 80vw;
 }
+

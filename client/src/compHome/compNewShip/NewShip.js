@@ -45,8 +45,8 @@ class NewShip extends React.Component {
                 <div className="new-ship-form-container">
                     <form className="new-ship-form">
                         <span className="new-ship-head">
-                        <div className="new-ship-header">New Ship</div>
-                        <button className="new-ship-cancel" onClick={this.newShipToggle}>x</button>
+                            <div className="new-ship-header">New Ship</div>
+                            <button className="new-ship-cancel" onClick={this.newShipToggle}>&#10005;</button>
                         </span>
                         <input className="new-ship-input" placeholder="Ship Name" onChange={this.handleChange}/>
                         <input className="new-ship-input" placeholder="Home Port" onChange={this.handleChange}/>

@@ -19,7 +19,7 @@
     font-family: Play;
     background-color: black;
     border-radius: 20px;
-    opacity: 0.7;
+    opacity: 0.8;
     z-index: 2;
     display: flex;
     animation: fadeInRight 1s ease;
@@ -89,8 +89,6 @@
     outline: none;
     display: flex;
     justify-content: center;
-    padding-bottom: 5px;
-    padding-left: 7px;
     position: relative;
     top: -25px;
     left: 50px;
