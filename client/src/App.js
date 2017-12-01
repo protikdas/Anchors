@@ -14,22 +14,76 @@ class App extends Component {
     super()
     this.state = {
       serverAddress: 'http://localhost:8080',
+      authError: "",
       page: "login",
       loggedIn: false,
-      user: "protik"
+      moveGlobeUp: false,
+      user: "",
     }
   }
 
-//Auth Functions
+
+
+// Auth Functions
+isAuthenticated = () => {
+  let token = localStorage.getItem("anchorsToken");
+  if (token) {
+    token = JSON.parse(token);
+    const config = {
+      headers: {Authorization: "bearer" + token.token}
+    }
+    axios.post(this.state.serverAddress + '/authenticate', {
+    username: token.user,
+    }, config)
+    .then(response => {
+      if (response.status === 200) {
+        this.setState({
+          loggedIn: true,
+          user: response.data.sub
+        })
+      } else {
+        this.setState({
+          loggedIn: false,
+          user: ""
+        })
+      }
+    })
+    .catch(error => {
+      console.log(error);
+      this.setState({
+        loggedIn: false,
+        user: ""
+      })
+    })
+
+  }
+}
+
 handleSignIn = (username, password) => {
   axios.post(this.state.serverAddress + '/signin', {
     username: username,
     password: password})
     .then(response => {
-      console.log(response.data);
+      if (response.data === "Incorrect password.") {
+        this.setState({
+          authError: "Incorrect password. Please try again."
+        })
+      } else {
+        let tokenToBeStored = {
+          user: username,
+          token: response.data
+        }
+        localStorage.setItem('anchorsToken', JSON.stringify(tokenToBeStored));
+        this.setState({
+          loggedIn: true,
+          user: username,
+        })
+      }
     })
     .catch(error => {
-      console.log(error);
+      this.setState({
+        authError: error
+      })
     })
 }
 
@@ -38,16 +92,36 @@ handleSignUp = (username, password) => {
     username: username,
     password: password})
     .then(response => {
-      // console.log(response.data.code);
-      if (response.data.code === 11000) {
-        console.log("User name taken.");
-      } else {
-        console.log("New user created");
-      }
-    })
+        if (response.data.code === 11000) {
+          this.setState({
+            authError: "Username unavailable. Please choose a different username."
+          })
+        } else {
+          this.setState({
+            authError: ""
+          })
+        }
+      })
     .catch(error => {
-      console.log(error);
+      this.setState({
+        authError: "Please choose a different username."
+      })
     })
+}
+
+handleSignOut = () => {
+  localStorage.removeItem("anchorsToken");
+  this.setState({
+      loggedIn: false,
+      moveGlobeUp: true,
+      user: ""
+  })
+}
+
+ clearAuthError = () => {
+  this.setState({
+    authError: ""
+  })
 }
 
 
@@ -55,7 +129,7 @@ handleSignUp = (username, password) => {
 renderGlobe = () => {
   const globeContainer = document.createElement("div");
   globeContainer.id = "globe-container"
-  globeContainer.style = "width: 40vw; height: 40vh; background: transparent; z-index: 1; position: fixed; top: -20vh; left: 20vw; display: flex; justify-content: space-around;"
+  globeContainer.style = "width: 100vw; height: 100vh; background: transparent; z-index: 1; position: fixed; top: -30vh; left: -20vh; display: flex; justify-content: space-around; animation-fill-mode:forwards;"
   document.getElementById("app-container").appendChild(globeContainer);
 
   const canvas = document.createElement("canvas");
@@ -82,11 +156,11 @@ renderGlobe = () => {
 
 deleteGlobe = () => {
   document.getElementById("globe-container").removeChild(document.getElementById("rotatingGlobe"));
-  document.body.removeChild( document.getElementById("globe-container"));
+  document.getElementById("app-container").removeChild( document.getElementById("globe-container"));
 }
 
-componentDidMount() {
-  this.renderGlobe();
+componentWillMount() {
+  this.isAuthenticated();
 }
 
 render() {
@@ -98,10 +172,10 @@ render() {
             <div className = "app-container" id="app-container">
               <Switch>
                 <Route path="/signin" render={(props) => 
-                        <Auth page="this.state.page" history={props.history} match={props.match} handleSignIn={this.handleSignIn}/>
+                        <Auth renderGlobe={this.renderGlobe} clearError={this.clearAuthError} moveGlobeUp={this.state.moveGlobeUp} page="this.state.page" match={props.match} error={this.state.authError} handleSignIn={this.handleSignIn}/>
                   } />
                 <Route path="/signup" render={(props) => 
-                        <Auth page="this.state.page" history={props.history} match={props.match} handleSignUp={this.handleSignUp}/>
+                        <Auth renderGlobe={this.renderGlobe} clearError={this.clearAuthError} moveGlobeUp={this.state.moveGlobeUp} page="this.state.page" match={props.match} error={this.state.authError} handleSignUp={this.handleSignUp}/>
                   } />
                 <Redirect to="/signin"/>
               </Switch>
@@ -110,14 +184,20 @@ render() {
         </Router>
       );
     } else {
+      // this.deleteGlobe();
       return (
         <Router>
         <div className="App">
-        <StarrySpace /> 
-          <div className = "app-container">
+        <StarrySpace />
+          <div className = "app-container" id="app-container"> 
+          <Switch>
           <Route exact path="/" render={(props) => 
-                <Home page="this.state.page" history={props.history} />
+            <div className = "app-container">
+                <Home renderGlobe={this.renderGlobe} moveInGlobe={this.state.moveInGlobe} user={this.state.user} isAuthenticated={this.isAuthenticated} signOut={this.handleSignOut} />
+            </div>
           }/> 
+          <Redirect to="/"/>
+          </Switch>
           </div>
         </div>
         </Router>

@@ -10,8 +10,7 @@ class Auth extends React.Component {
         this.state = {
             username: "",
             password: "",
-            disabled: true,
-            error: "",
+            disabled: true
         }
     }
 
@@ -49,14 +48,19 @@ class Auth extends React.Component {
         this.props.handleSignUp(this.state.username, this.state.password);
     }
 
+    componentWillMount() {
+        this.props.clearError();
+    }
+
     componentDidMount() {
         document.getElementById("name-field").focus();
-        setInterval(() => {
-            this.setState({
-                error: "al;f kasflka l;fa ;fkal; fma;lfm a;lfa ;dkal; fkla;f kla;kf as;l kfaslfak;f"
-            })
-        }, 1500);
-    
+        if (!document.getElementById("globe-container")) {
+            this.props.renderGlobe();
+        }
+        if (this.props.moveGlobeUp) {
+            let globeContainer = document.getElementById("globe-container");
+            globeContainer.classList.add("moveOutGlobe");
+        }
     }
 
     componentWillReceiveProps() {
@@ -65,14 +69,14 @@ class Auth extends React.Component {
 
 
     render() {
-        let authJSX, authButtonClasses, errorJSX;
+        let authJSX, errorJSX;
         if (this.props.match.path === "/signin") {
             authJSX = 
                 <div className="auth-box">
                     <div className="auth-header">Sign In</div>
                     <form className="auth-form" onSubmit={this.handleSignIn}>
-                        <input className="auth-form-input" autocomplete="off" ref="username" id="name-field" type="text" placeholder="User Name" onChange={this.handleChange}/>
-                        <input className="auth-form-input" autocomplete="off" ref="password" type="password" placeholder="Password"  onChange={this.handleChange}/>
+                        <input className="auth-form-input" autoComplete="off" spellCheck="false" ref="username" id="name-field" type="text" placeholder="User Name" onChange={this.handleChange}/>
+                        <input className="auth-form-input" autoComplete="off" spellCheck="false" ref="password" type="password" placeholder="Password"  onChange={this.handleChange}/>
                         <br/>
                         <button disabled={this.state.disabled} className="auth-form-button">Sign In</button>
                     </form>
@@ -86,8 +90,8 @@ class Auth extends React.Component {
                 <div className="auth-box">
                     <div className="auth-header">Sign Up</div>
                     <form className="auth-form" onSubmit={this.handleSignUp}>
-                        <input className="auth-form-input" autocomplete="off" ref="username" id="name-field" type="text" placeholder="User Name"  onChange={this.handleChange}/>
-                        <input className="auth-form-input" autocomplete="off" ref="password" type="password" placeholder="Password"  onChange={this.handleChange}/>
+                        <input className="auth-form-input" autoComplete="off" spellCheck="false" ref="username" id="name-field" type="text" placeholder="User Name"  onChange={this.handleChange}/>
+                        <input className="auth-form-input" autoComplete="off" spellCheck="false" ref="password" type="password" placeholder="Password"  onChange={this.handleChange}/>
                         <br/>
                         <button disabled={this.state.disabled} className="auth-form-button">Sign Up</button>
                     </form>
@@ -96,7 +100,7 @@ class Auth extends React.Component {
                     </div>
                 </div>
         }
-        if (this.state.error === "") {
+        if (this.props.error === "") {
             errorJSX = 
                     <div className="auth-error-container-invisible">
                          <p className="error-message"></p>
@@ -104,10 +108,9 @@ class Auth extends React.Component {
         } else {   
             errorJSX =  
                     <div className="auth-error-container-visible">
-                        <p className="error-message">{this.state.error}</p>
+                        <p className="error-message">{this.props.error}</p>
                     </div>
         }
-
         return(
             <div className="auth-container">
                     { authJSX }

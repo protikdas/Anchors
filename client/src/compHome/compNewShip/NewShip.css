@@ -1,0 +1,113 @@
+.new-ship-form-positioner {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100vh;
+    position: fixed;
+    z-index: 2;
+}
+
+.new-ship-form-container {
+    /* display: flex;
+    justify-content: space-around; */
+    width: 600px;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border: 20px solid rgb(2, 2, 72);
+    font-family: Play;
+    background-color: black;
+    border-radius: 20px;
+    opacity: 0.7;
+    z-index: 2;
+    display: flex;
+    animation: fadeInRight 1s ease;
+}
+
+
+.new-ship-form {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 20px;
+}
+
+.new-ship-head {
+    display:flex;
+    justify-content: space-between;
+}
+
+.new-ship-header {
+    font-size: 2.5em;
+    color: rgb(0, 159, 222);
+    position: relative;
+    margin: 20px;
+}
+
+
+.new-ship-input {
+    background: transparent;
+    width: 90%;
+    height: 2em;
+    color: cyan;
+    padding: 0px 0px 0px 20px;
+    font-family: Play;
+    font-size: 2em;
+    margin: 10px;
+    outline: none;
+    border: 3px solid rgb(62, 62, 62);
+    border-radius: 20px;
+}
+
+.new-ship-btn {
+    font-family: Play;
+    font-size: 1.5em;
+    width: 150px;
+    margin: 10px;
+    height: 2em;
+    color: skyblue;
+    border: 3px solid rgb(62, 62, 62);
+    border-radius: 15px;
+    background:black;
+    cursor: pointer;
+    outline: none;
+}
+
+.new-ship-cancel {
+    font-family: Play;
+    font-size: 1.5em;
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    height: 2em;
+    color: red;
+    border: 3px solid maroon;
+    border-radius: 25px;
+    background:black;
+    cursor: pointer;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 5px;
+    padding-left: 7px;
+    position: relative;
+    top: -25px;
+    left: 50px;
+}
+
+.new-ship-cancel:hover{
+    color: red;
+    background:rgb(19, 19, 19);
+}
+
+.new-ship-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+}
+
+.new-ship-btn:hover {
+    color: cyan;
+    text-shadow: 2px 2px rgb(2, 2, 72);
+    background:rgb(62, 62, 62);
+}

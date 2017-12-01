@@ -1,0 +1,51 @@
+.menu-positioner {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    right: 0px;
+    z-index: 2;
+}
+
+.menu-container {
+    width: 20vw;
+    min-width: 400px;
+    height: 100vh;
+    min-height: 800px;
+    background-color: rgb(15, 15, 15);
+    border-left: 20px solid rgb(2, 2, 72);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    animation: fadeInRight 1s;
+    opacity: 0.9;
+}
+
+.user-info {
+    width: 100%;
+    height: 10%;
+    min-width: 400px;
+    background: red;
+}
+
+.ship-list {
+    height: 70%;
+    background-color: green;
+}
+
+.control-panel {
+    height: 10%;
+    background-color: blue;
+}
+
+/* p {
+    font-family: Play;
+} */
+
+.user-text {
+    color: white;
+    font-size: 1.5em;
+}
+
+.home-view {
+    width: 80vw;
+}

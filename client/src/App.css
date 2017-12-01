@@ -2,6 +2,26 @@ input::-webkit-input-placeholder {
   color: grey !important;
   }
 
+/* Globe Animation */
+@keyframes moveInGlobe {
+  from {
+    transform: none;
+  }
+  to {
+    transform: translate3d(-3vh, 19vh, 0);
+  }
+}
+
+@keyframes moveOutGlobe {
+  from {
+    transform: translate3d(-3vh, 19vh, 0);
+  }
+  to {
+    transform: none
+  }
+}
+
+
 .App {
   text-align: center;
 }
@@ -75,11 +95,19 @@ input::-webkit-input-placeholder {
 /* GLOBE */
 #rotatingGlobe {
   margin: 100px;
-  width: 80vh;
-  height: 80vh;
+  width: 100vh;
+  height: 100vh;
 }
 
 #globe-handler {
   position: fixed;
   z-index: 1;
+}
+
+.moveInGlobe {
+  animation: moveInGlobe 2s;
+}
+
+.moveOutGlobe {
+  animation: moveOutGlobe 2s;
 }

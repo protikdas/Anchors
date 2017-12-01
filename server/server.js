@@ -96,4 +96,24 @@ app.post('/signin', (req, res) => {
         })
 })
 
+//Authenticate
+app.post('/authenticate', (req, res) => {
+    let tokenFromHeader = req.headers.authorization;
+    if (tokenFromHeader) {
+        tokenFromHeader = tokenFromHeader.slice(6, tokenFromHeader.length);
+        jwt.verify(tokenFromHeader, secretKey, (err, decodedPayload) => {
+            if (err) {
+                res.status(403).send("Forbidden");
+            }
+            if (decodedPayload) {
+                if (decodedPayload.sub === req.body.username) {
+                    return res.status(200).send(decodedPayload);
+                }
+            }
+        })
+    } else {
+        return res.status(403).send("Forbidden");
+    }
+})
+
 
